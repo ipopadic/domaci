@@ -1,5 +1,5 @@
 // task 1
-//
+//.....
 var person = {
 	name: "Mike",
 	age: 28,
