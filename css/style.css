@@ -1,0 +1,101 @@
+*{
+
+	box-sizing: border-box;
+}
+
+body {
+	background-image: url("../img/asd.jpg");
+	background-repeat: repeat-y;	
+	background-attachment: fixed;
+	background-position:  center;
+
+}
+
+.banner {
+	width: 100%
+}
+nav ul li{
+	list-style-type: none;
+	
+}
+nav ul.main_meni li{
+	display: inline-block
+}
+
+section{
+	background-color: white;
+	margin: 20px auto;	
+}
+table{
+	margin: 20px auto;
+	border-collapse: collapse;
+	width: 1200px
+}
+table img {
+	width: 250px;
+}
+
+table tr:nth-child(odd) td{
+	background-color: grey
+}
+
+
+.name{
+	font-size: 32px;
+	font-weight: bold;	
+	width: 150px;
+}
+
+form{
+	margin: 20px auto;
+	width: 500px;
+	background-color: #ccc
+}
+
+form label {
+	display: block;
+	margin: 15px 0;
+}
+
+form input, 
+form select,
+form textarea{
+	width: 100%;
+	font-size: 24px
+}
+
+
+form textarea{
+	height: 100px
+}
+
+
+form input.submit{
+	background-color: orange;
+	color: #fff	;
+}
+
+
+/*
+li#twitter{
+	background-image:  url("https://help.twitter.com/content/dam/help-twitter/brand/logo.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+li#facebook{
+	list-style-image: url("https://pyxis.nymag.com/v1/imgs/11d/582/c7b0487c6e26db4f5be6eb679e3620d2ce-facebook.rsquare.w1200.jpg");
+	/*background-repeat: no-repeat;
+	background-size: contain;
+}
+
+li#linkedin{
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-size: contain;
+}*/
+
+.icon{
+	width:  20px;
+		
+}
