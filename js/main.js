@@ -1,120 +1,149 @@
 //task 1
 
-function Student (name, last_name, age ,average_grade) {
-	this.name = name;
-	this.last_name = last_name;
-	this.age = age;
-	this.average_grade = average_grade;
+function toLowerCase(str){
+	return str.toLowerCase();
 }
 
-var pera= new Student('Pera', 'Peric', 32, 9.34);
-var mika= new Student('Mika', 'Mikic', 44, 8.22);
-var laza= new Student('Laza', 'Lazic', 23, 10);
-var jovan = new Student('Jovan', 'Jovanovic', 25, 9);
+var lorem = "Lorem ipsum dolor sit amet"
 
-console.log(pera, mika, laza, jovan);
+console.log(toLowerCase(lorem));
 
 
 
+// task 2
 
-// task 2 name position, age  goals, cardY sards R
-function Player(name, position, age, goals, cardY, cardR){
-	this.name=name;
-	this.position = position;
-	this.age = age;
-	this.goals = goals;
-	this.cardY = cardY;
-	this.cardR = cardR;
+function inString(str1, str2){
+	if (str1.indexOf(str2) > -1) {
+		console.log(str2+ " is in "+ str1)}
+	else console.log(str2+ " is not in" + str1);
 }
 
 
+inString(lorem,'sit');
 
-var frenkie =new Player ('Frenkie de Jong'	,'MF',	23,		3,	3,	0,	0	,3	,0);
-var jordi= new Player('Jordi Alba'	,	'DF',	31	,	1	,3	,0	,0,	7,	0);
-var lionel= new Player('Lionel Messi'		,'FW'	,33		,12	,2,	2,	3,	3,	0);
-var antoine= new Player('Antoine Griezmann'	,'FW',	29	,	6,	4,	0,	1,	2,	0);
-var sergio= new Player('Sergio Busquets',	'MF',	32,		0,	0,	0,	0,	5,	0);
-var pedri= new Player('Pedri',			'MF',	18,		2,	2,	0,	0,	1,	0);
-var marc= new Player('Marc-André ter Stegen'	,'GK',	28,		0,	0,	0,	0,	0,	0);
-var clement= new Player('Clément Lenglet',		'DF',	25,		1,	0,	0,	0,	7,	1);
-var serino= new Player('Sergiño Dest'	,	'DF',	20,		0,	1,	0,	0,	1,	0);
-var ronald= new Player('Ronald Araújo'	,	'DF',	21	,	1,	0,	0,	0,	0,	0);
+//task 3
+
+function lastLetter(str) {
+	return str.length-1;
+}
+
+console.log(lastLetter(lorem))
 
 
+function split(str){
+	var arr=[];
+	var arr2 =str.split(' ');
+	for (var i=0;i<3;i++){
+		arr[i]=arr2[i];
+	}
+	return arr;
+}
 
-console.log(frenkie, jovan,lionel, antoine, pedri, marc, clement, serino, ronald);
-
-
-
-
-
-
-// task 3
-var players = [
-['Frenkie de Jong',			'MF',	23,		3,	3,	0,	0,	3,	0],
-['Jordi Alba',				'DF',	31,		1,	3,	0,	0,	7,	0],
-['Lionel Messi',			'FW',	33,		12,	2,	2,	3,	3,	0],
-['Antoine Griezmann',		'FW',	29,		6,	4,	0,	1,	2,	0],
-['Sergio Busquets',			'MF',	32,		0,	0,	0,	0,	5,	0],
-['Pedri',					'MF',	18,		2,	2,	0,	0,	1,	0],
-['Marc-André ter Stegen',	'GK',	28,		0,	0,	0,	0,	0,	0],
-['Clément Lenglet',			'DF',	25,		1,	0,	0,	0,	7,	1],
-['Sergiño Dest',			'DF',	20,		0,	1,	0,	0,	1,	0],
-['Ronald Araújo',			'DF',	21,		1,	0,	0,	0,	0,	0]
-
-];
- var player=[];
+console.log(split(lorem));
 
 
-for(var i=0;i<players.length;i++){
-	player[i]=new Player(players[i][0],players[i][1],players[i][2],players[i][3],players[i][4],players[i][5]);
+
+// task 5
+
+var piter="Piter is an actor.";
+
+function switchLettters(str){
+	var res='';
+	var i=str.charAt(3);
+	for (var j=0;j<str.length;j++){
+		if (j===3){res=res + str.charAt(str.length-3);}
+		else if (j===str.length-3) (res =res + i);
+			else res= res + str.charAt(j);
+	}
+	return res;
+}
+
+console.log(switchLettters(piter));	
+
+// task 6
+
+
+
+var someData = [34, 23, 14, 56, 23, 44, 65];
+
+function remove(arr, num) {
+	var ind=arr.indexOf(num);
+	var first = arr.slice(0, ind);
+	var second = arr.slice(ind+1, arr.length);
+	var res = first.concat(second);
+	return res;	
+}
+
+
+someData = remove(someData,56);
+
+console.log(someData)
+
+
+// task 7
+
+var someData = [34, 23, 14, 56, 23, 44, 65];
+
+function asd(arr){
+	var first =arr.slice(0,4);
+	first.shift();
+	var second= arr.slice(4,arr.length);
+	second.sort();
+	second.reverse();
+	return first.concat(second);
 
 }
 
-for(var i=0;i<players.length;i++){
-console.log(player[i]);
+otherData = asd(someData);
+console.log(otherData)
+
+
+//task 8
+
+
+var someData = [334, 233, 212, 199, 154, 122];
+
+function recalculate(arr){
+	var res=[];
+	res[0]=arr[0];
+	for(i=1;i<arr.length;i++)
+		{res[i]=arr[i]-arr[i-1];}
+	return res;
+}
+
+console.log(recalculate(someData))
+
+
+//task 9
+
+
+
+var students = [
+  {
+     name: "Jim",
+     avgGrade: 8.5556
+  },
+  {
+     name: "Mike",
+     avgGrade: 8.5492
+  },
+  {
+     name: "Anna",
+     avgGrade: 8.9322
+  },
+  {
+     name: "Jack",
+     avgGrade: 8.6111
+  }
+]
+
+
+function over85(arr) {
+	arr.forEach (function(item){item.avgGrade= item.avgGrade.toFixed(2)})
+	return arr.filter(function(item){return item.avgGrade>8.5;})
 }
 
 
+var newData=(over85(students));
 
-// task 4
-
-
-
-function Operation(numberOne, numberTwo, fun){
-	this.numberOne =numberOne;
-	this.numberTwo = numberTwo;
-	this.fun = fun;
-}
-
-function multiply () {return this.numberOne * this.numberTwo;}
-
-function devide () {return this.numberOne / this.numberTwo;}
-
-function add () {return this.numberOne + this.numberTwo;}
-
-function subtract () {return this.numberOne - this.numberTwo;}
-
-
-var first = new Operation(1, 2, multiply);
-var second = new Operation(3, 4, devide);
-var third = new Operation(5, 6, add);
-var fourth = new Operation(7, 8, subtract);
-
-console.log(first.fun(), second.fun(), third.fun(), fourth.fun());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(newData)
