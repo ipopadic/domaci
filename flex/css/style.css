@@ -181,6 +181,11 @@ label{
  	h3{
  		right: 50px;}
 
+header nav ul li:hover .meni{
+	display: none;
+}
+
+
  }
 
   @media all and (max-width: 720px){
