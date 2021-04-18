@@ -1,79 +1,174 @@
-// first task
+var team = { 
+	teamLogo: "./img/header_logo.svg",
+	teamName: "Real Madrid",
+	players: 
 
-function isOnline() {
-	if (window.navigator.onLine) {alert("browser is online")}
-		else {alert("browser is offline")}
+		[
+		{name: "Thibaut",
+		 lastName: "Courtois",
+		 number: 1,
+		 age: 28,
+		 position: "goalkeeper",
+		 image: "./img/ThibautCourtois.jpg"
+		} ,
+
+		{name: "Sergio",
+		 lastName: "Ramos",
+		 number: 4,
+		 age: 35,
+		 position: "center-back",
+		 image: "./img/SergioRamosGarcía.jpg" 
+		},
+		{name: "Raphaël",
+		 lastName: "Varane",
+		 number: 5,
+		 age: 27,
+		 position: "center-back",
+		 image: "./img/RaphaëlVarane.jpg" 
+		},
+		{name: "Marcelo ",
+		 lastName: "da Silva",
+		 number: 12,
+		 age: 32,
+		 position: "left-back",
+		 image: "./img/MarceloVieiradaSilva.jpg" 
+		},
+		{name: "Daniel  ",
+		 lastName: "Carvajal ",
+		 number: 2,
+		 age: 29,
+		 position: "right-back",
+		 image: "./img/DanielCarvajalRamos.jpg" 
+		},
+		{name: "Carlos ",
+		 lastName: "Casimiro ",
+		 number: 14,
+		 age: 29,
+		 position: "Defensive Midfield",
+		 image: "./img/CarlosHenriqueCasimiro.jpg" 
+		},
+		{name: "Federico  ",
+		 lastName: "Valverde  ",
+		 number: 15,
+		 age: 22,
+		 position: "center Midfield",
+		 image: "./img/FedericoSantiagoValverdeDipetta.jpg" 
+		},
+		{name: "Toni  ",
+		 lastName: "Kroos  ",
+		 number: 8,
+		 age: 31,
+		 position: "center Midfield",
+		 image: "./img/ToniKroos.jpg" 
+		},
+		{name: "Francisco  ",
+		 lastName: "Suárez  ",
+		 number: 22,
+		 age: 28,
+		 position: "Attaking Midfield",
+		 image: "./img/FranciscoRománAlarcónSuárez.jpg" 
+		},
+		{name: "Karim  ",
+		 lastName: "Benzema ",
+		 number: 9,
+		 age: 33,
+		 position: " Centre-Forward",
+		 image: "./img/KarimBenzema.jpg" 
+		},
+		{name: "Andriy",
+		 lastName: "Lunin",
+		 number: 13,
+		 age: 22,
+		 position: "goalkeeper",
+		 image: "./img/AndriyLunin.jpg" 
+		},
+		{name: "Éder ",
+		 lastName: "Militão",
+		 number: 3,
+		 age: 23,
+		 position: " Centre-Back",
+		 image: "./img/ÉderGabrielMilitão.jpg" 
+		},
+		{name: "Luka  ",
+		 lastName: "Modric",
+		 number: 10,
+		 age: 35,
+		 position: "Central Midfield",
+		 image: "./img/LukaModrić.jpg" 
+		},
+		{name: "Ferland   ",
+		 lastName: "Mendy",
+		 number: 23,
+		 age: 25,
+		 position: "Left-Back",
+		 image: "./img/FerlandMendy.jpg" 
+		},
+		{name: "Mariano   ",
+		 lastName: "Díaz",
+		 number: 24,
+		 age: 27,
+		 position: "Centre-Forward",
+		 image: "./img/MarianoDíazMejía.jpg" 
+		}
+		]
+	
 }
 
-isOnline();
+var firstSquad = document.getElementById('first-squad');
+var substitutes = document.getElementById('substitutes');
 
-//task 2
+function addLogo(){
+	var logo=document.createElement('img');
+	var header = document.querySelector('header');
 
+	logo.setAttribute('src', team.teamLogo);
+	header.prepend(logo);
 
-function reload(){
-	location.reload();	
 }
 
-// reload();
-
-//task 3
-
-// setTimeout( function(){location.href='http://www.google.com'}, 3000)
-
-
-
-// task 4
-
-var a=0;
-
-function count(){
-	a++;
-	console.log(a);
-	if (a>=15) clearInterval(pera);
+function getRandom(arr){
+	return Math.round(Math.random()* (arr.length-1))
 }
 
-var pera= setInterval(count, 1000)
-
-
-// task 5
-
-
-function random10(){
-	return Math.round(Math.random()*10);
+function populate(){
+	while (team.players.length){
+	var randomPlayer = getRandom(team.players);
+	var player = createPlayer(team.players[randomPlayer]);
+	var container = team.players.length > 4 ? firstSquad : substitutes ;
+	container.appendChild(player);
+	team.players.splice(randomPlayer,1)
+}
 }
 
-console.log(random10());
+function createPlayer(playerData){
+	var player = document.createElement('div');
+	var image= '<img src="' + playerData.image + '">';
+	var name = '<div> ' + playerData.number+ ' ' + playerData.name + ' '+ playerData.lastName + '</div>';
+	var age = '<div> age: ' + playerData.age + '</div>';
+	var position= '<div>' + playerData.position + '</div>';
+	player.innerHTML = image + name + age + position;
+
+	return player;
+}
+
+function makeSubstitute(){
+	var firstSquadPlayers = firstSquad.querySelectorAll('div');
+	var substitutePlayers = substitutes.querySelectorAll('div');
+
+	var firstSquadNumber = getRandom(firstSquadPlayers);
+	var substituteNumber = getRandom(substitutePlayers);
+	var firstPlayer = firstSquadPlayers[firstSquadNumber];	
+	var substitutePlayer = substitutePlayers[substituteNumber];
+	var previousSubsitutePlayer = substitutePlayer.previousSibling;
+
+	var nextSubsitutePlayer = substitutePlayer.nextSibling;
+
+	firstPlayer.before(substitutePlayer);
+	previousSubsitutePlayer ? previousSubsitutePlayer.after(firstPlayer) : nextSubsitutePlayer.before(firstPlayer);
+
+}
 
 
-var users = [
-		{name:'Peter',
-	age: 32,
-	status:'inactive'},
-		{name:'Mike',
-	age: 26,
-	status:'inactive'},
-		{name:'John',
-	age: 44,
-	status:'inactive'},
-		{name:'Ann',
-	age: 12, 
-	status:'inactive'},
-		{name:'Sarah',
-	age: 77,
-	status:'inactive'},
-	];
-
-var user = prompt("log in");
-
-var arr= users.filter(function(item) {return item.name==user;});
-
-if (arr.length == 0) {console.log("User "+user+" doesn't exist");}
-	else {
-		users.forEach(function(item){if (item.name == name) { users.status='active'};})
-		localStorage.setItem("loggedInUser", user)
-		console.log(localStorage.getItem("loggedInUser"));
-		setTimeout(function(){users.forEach(function(item){if (item.name == name) { users.status='active'};}); localStorage.removeItem("loggedInUser");console.log(user+" is logged out")}, 60000)
-	}
-
-
-
+addLogo();
+populate();
+setInterval(makeSubstitute, 60000);

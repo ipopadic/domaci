@@ -1,0 +1,29 @@
+*{
+	box-sizing: border-box;
+}
+body {
+	padding: 0;
+	margin: 0;
+	font: Helvetica;
+}
+
+main {
+	padding: 30px;
+}
+
+#first-squad,
+#substitutes {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 20px;
+	padding: 30px;
+}
+
+#substitutes{
+	border-top: solid 2px black;
+}
+#first-squad > div,
+#substitutes > div{
+	width: 23%
+}
