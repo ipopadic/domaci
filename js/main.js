@@ -1,66 +1,92 @@
-var images = ["./img/1.jpg", "./img/2.jpg","./img/3.jpg","./img/4.png" ]
-
-
-var slider = document.getElementById('slider');
-var thumbnails = document.getElementById('thumbnails');
-
-
-
-function loadSlider(arr) {
-	var n=0;
-	do {
-		var image = document.createElement('img');
-		image.setAttribute('src', arr[n]);
-		(n===0)? null : image.classList.add('hidden');
-		n++;
-		slider.appendChild(image);
+var moviesArr = [ 
+	{name: "Back to the future",
+	 img: "./img/BackToTheFuture.jpg"
+	},
+	{name: "Back to the future 2",
+	 img: "./img/BackToTheFuture2.jpg"
+	},
+	{name: "Back to the future 3",
+	 img: "./img/BackToTheFuture3.jpg"
+	},
+	{name: "Juno",
+	 img: "./img/Juno.jpg"
+	},
+	{name: "Frailty",
+	 img: "./img/Frailty.jpg"
+	},
+	{name: "Full Metal Jacket",
+	 img: "./img/FullMetalJAcket.jpg"
+	},
+	{name: "Saving Private Rian",
+	 img: "./img/SavingPrivateRian.jpg"
+	},
+	{name: "Die Hard",
+	 img: "./img/DieHard.jpg"
+	},
+	{name: "Maratonci trče počasni krug",
+	 img: "./img/maratonci.png"
+	},
+	{name: "Ko to tamo peva",
+	 img: "./img/KoToTamoPeva.jpg"
+	},
+	{name: "Točkovi",
+	 img: "./img/Tockovi.jpg"
+	},
+	{name: "Mi nismo anđeli",
+	 img: "./img/andjeli.jpg"
 	}
-		while(n<arr.length)
-}
+];
 
-function displayThumbnails(arr){
-	var n=0;
+var movies = document.querySelector('.movies');
+var input = document.querySelector('input');
+var title ;
 
-	do {
-		var thumb = document.createElement('img');
-		thumb.setAttribute('src', arr[n]);
-		n++;
-		thumbnails.appendChild(thumb);
+
+function populate(arr) {
+	for (var i=0; i<arr.length; i++) {
+		var movie = document.createElement('div');
+		var img = document.createElement('img');
+		var title = document.createElement('div');
+		var x = document.createElement('img');
+
+		img.setAttribute('src', arr[i].img);
+		title.innerHTML= arr[i].name;
+		title.classList.add('title');
+
+		x.classList.add('x');
+		x.setAttribute('src', './img/download.png')
+		movie.appendChild(img);
+		movie.appendChild(title);
+		movie.appendChild(x);
+		movies.appendChild(movie);
 	}
-	while(n<arr.length)
-
-}
-
-
-function sliding () {
-	slider.innerHTML='';
-var slide = images.shift();
-images.push(slide);
-
-loadSlider(images);
-boardering();
 } 
 
+function filter() {
+	var input = document.querySelector('input');
+	input.addEventListener('keyup', function(e) {
+	title= e.target.value.toLowerCase();
 
-function boardering(){
-	var image = slider.firstChild;
-	var path = image.getAttribute('src');
-	var thumbArr = document.querySelectorAll('#thumbnails img');
-	for (var i=0; i<thumbArr.length; i++){
-		if (thumbArr[i].getAttribute('src') === path) {thumbArr[i].classList.add('border')}
-				else {thumbArr[i].classList.remove('border')};
+	var list= document.querySelectorAll('.title');
+	
 
+	for (var i=0; i<list.length;i++ ) {
+		if (list[i].textContent.toLowerCase().indexOf(title)>-1) {list[i].parentElement.classList.remove('hidden');}
+			else {list[i].parentElement.classList.add('hidden');}
+	}
+})
+}
+
+function close() {
+	var x = document.querySelectorAll('.x');
+	for (var i=0; i<x.length; i++) {
+		x[i].addEventListener('click', function(e) {
+			e.target.parentElement.classList.add('hidden');
+		})
 	}
 }
 
+populate(moviesArr);
+filter();
+close();
 
-loadSlider(images);
-displayThumbnails(images);
-setInterval(sliding, 5000);
-boardering();
-
-
-
-
-
- 
