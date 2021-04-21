@@ -1,49 +1,22 @@
-*{
-	box-sizing: border-box;
+* {box-sizing: content-box;
 }
+
 
 body {
-	margin:0;
+	margin: 0;
 	padding: 0;
-	background-color: black;
-	color: yellow;
 
 }
-header {
+
+select {
+	width: 300px;
+	font-size: 32px;
+
+}
+
+section {
 	max-width: 1000px;
-	margin:  30px auto ;
 	display: flex;
 	justify-content: center;
-
-}
-input { 
-	width: 300px; }
-
-.movies {
-	display:flex;
-	flex-wrap: wrap;
-	max-width: 1000px;
 	margin: auto;
-}
-
-section > div {
-	position: relative;
-}
-
-img {
-	width: 200px;
-	margin: 10px;
-}
-
-.hidden {
-	display: none;
-}
-
-.x {
-	border-radius: 50%;
-	width: 10px;
-	position: absolute;
-	top: 10px;
-	left: 180px;
-	z-index: 9;
 }
