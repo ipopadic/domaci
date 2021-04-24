@@ -1,37 +1,78 @@
-var breed="cairn";
-var select=document.querySelector('select');
-var img= document.createElement('img');
-var section= document.querySelector('section');
-section.appendChild(img);
+var key = "AIzaSyAyl8ot73SUeRXAs-2UAXHEEY4nTVBZ6xY";
 
 
-select.addEventListener( "change", function(e) {
-	breed=e.target.value;
-}) ;
+var videoList = document.querySelector('.video-list');
+var search = document.querySelector('.search input');
+var searchButton = document.querySelector('.search button');
+var videoPreview = document.querySelector('iframe');
+var div = document.querySelector('div');
 
+function getData (){
+	var url = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q="+ search.value +"&key=" + key;
+	var req = new XMLHttpRequest();
+	search.value = " ";
+	req.open ("GET", url);
+	req.onload = function (){
+		listVideos (JSON.parse(req.responseText))
+	}
+	req.send();
+	
+}
 
-
-
-function image(url) {
-	img.setAttribute('src', url );
+function related(id){
+	var urlRelated ="https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&relatedToVideoId=" +  id + "&type=video&key=" + key;
+	console.log(urlRelated);
+	var req = new XMLHttpRequest();
+	
+	req.open ("GET", urlRelated);
+	req.onload = function (){
+		listVideos (JSON.parse(req.responseText))
+	}
+	req.send();
 
 }
 
-function dogs(breed) {
-
-var req= new XMLHttpRequest();
-
-req.open('GET' , 'https://dog.ceo/api/breed/'+breed+"/images/random");
-
-req.onload = function () {
-	var url = JSON.parse(req.responseText).message;
-	image(url);
+function listVideos(data){
+	videoList.innerHTML = "";
+	data.items.forEach (function (video){
+		createVideo(video);
+	})
 }
 
-req.send();
+function createVideo (video){
+	console.log(video)
+	var container = document.createElement('div');
+	var textWrapper = document.createElement('div');
 
+	var image = document.createElement('img');
+	image.setAttribute('src', video.snippet.thumbnails.default.url);
+	container.appendChild(image);
+	
+	var title = document.createElement('h3');
+	title.textContent = video.snippet.title;
+	textWrapper.appendChild(title);
+	
+	var desc = document.createElement('p');
+	desc.textContent = video.snippet.description;
+	textWrapper.appendChild(desc);
+
+	container.appendChild(textWrapper);
+	container.addEventListener('click', function(){
+
+	videoPreview.setAttribute('src', 'https://www.youtube.com/embed/' + video.id.videoId)
+	videoPreview.classList.add('visible');
+	related(video.id.videoId);
+	});
+
+	
+	
+	videoList.appendChild(container);
+	
 }
 
 
 
-setInterval ( function () {dogs(breed)}, 5000);
+searchButton.addEventListener('click', getData);
+
+
+
